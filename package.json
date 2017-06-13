@@ -1,0 +1,38 @@
+{
+  "name": "lootpatch",
+  "version": "1.0.0",
+  "description": "A webapp where users can buy bundles of patches for themselves, their enemies, or their friends.",
+  "main": "server.js",
+  "dependencies": {
+    "async": "^2.4.1",
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongoose": "^4.10.5",
+    "pug": "^2.0.0-rc.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gioperalto@bitbucket.org/gioperalto/lootpatch.git"
+  },
+  "keywords": [
+    "loot",
+    "patch",
+    "bundle",
+    "buy",
+    "patches",
+    "enemies",
+    "friends",
+    "enemy",
+    "friend"
+  ],
+  "author": "Gio Peralto Pritchard",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/gioperalto/lootpatch#readme"
+}
