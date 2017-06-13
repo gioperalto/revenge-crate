@@ -1,13 +1,13 @@
 'use strict'
 
-let PlanController = require('../../controllers/PlanController');
+let ThingController = require('../../controllers/ThingController');
 
 module.exports = (router) => {
 
-  router.route('/api/plans')
+  router.route('/api/things')
   .get((req, res, next) => {
-    PlanController.getPlans((plans) => {
-      res.json(plans);
+    ThingController.getThings((things) => {
+      res.json(things);
     });
   })
   .post((req, res, next) => {

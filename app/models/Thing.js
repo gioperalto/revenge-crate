@@ -1,12 +1,12 @@
 'use strict'
-// app/models/Plan.js
+// app/models/Thing.js
 
 // grab the things we need
 let mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 // create a schema
-var planSchema = new Schema({
+var thingSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -15,14 +15,20 @@ var planSchema = new Schema({
         type: String,
         required: true
     },
-    cost: Number,
-    stripe_id: String,
+    cost: {
+        type: Number,
+        required: true
+    },
+    adult_only: {
+        type: Boolean,
+        default: false
+    },
     created_at: Date,
     modified_at: Date
 });
 
 // on every save, add the date
-planSchema.pre('save', function(next) {
+thingSchema.pre('save', function(next) {
     // get the current date
     var currentDate = new Date();
   
@@ -36,7 +42,7 @@ planSchema.pre('save', function(next) {
     next();
 });
 
-var Plan = mongoose.model('Plan', planSchema);
+var Thing = mongoose.model('Thing', thingSchema);
 
 // make this available to our users in our Node applications
-module.exports = Plan;
+module.exports = Thing;

@@ -2,7 +2,7 @@
 
 let async = require('async'),
     seeds = require('../../config/seeds'),
-    Plan = require('../models/Plan');
+    Thing = require('../models/Thing');
 
 module.exports = {
   seedItems: (items, model, callback) => {
@@ -39,8 +39,8 @@ module.exports = {
     async.waterfall([
       function(callback) {
         module.exports.seedItems(
-          seeds.plans,
-          Plan,
+          seeds.things,
+          Thing,
           callback
         );
       }
