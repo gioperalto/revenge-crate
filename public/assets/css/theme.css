@@ -1,15 +1,7 @@
-html {
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-nav.light-blue {
-  background: linear-gradient(to left, #28a5f5, #1e87f0);
-}
-
 nav a.logo {
   font-size: 1.4rem;
   font-weight: 300;
+  text-transform: uppercase;
 }
 
 a.btn-large {
@@ -25,5 +17,5 @@ a.btn-large {
 }
 
 .overlay {
-  background-color: rgba(255,255,255,.8);
+  background-color: rgba(0,0,0,.6);
 }
