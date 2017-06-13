@@ -1,7 +1,7 @@
 {
-  "name": "lootpatch",
+  "name": "revengecrate",
   "version": "1.0.0",
-  "description": "A webapp where users can buy bundles of patches for themselves, their enemies, or their friends.",
+  "description": "A webapp where you can send someone something they won't like.",
   "main": "server.js",
   "dependencies": {
     "async": "^2.4.1",
@@ -19,14 +19,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gioperalto@bitbucket.org/gioperalto/lootpatch.git"
+    "url": "git+https://gioperalto@bitbucket.org/gioperalto/revengecrate.git"
   },
   "keywords": [
-    "loot",
-    "patch",
+    "revenge",
+    "crate",
     "bundle",
     "buy",
-    "patches",
+    "send",
+    "scary",
+    "creepy",
+    "things",
+    "creatures"
     "enemies",
     "friends",
     "enemy",
@@ -34,5 +38,5 @@
   ],
   "author": "Gio Peralto Pritchard",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/gioperalto/lootpatch#readme"
+  "homepage": "https://bitbucket.org/gioperalto/revengecrate#readme"
 }
