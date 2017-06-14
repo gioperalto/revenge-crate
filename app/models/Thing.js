@@ -19,6 +19,10 @@ var thingSchema = new Schema({
         type: Number,
         required: true
     },
+    inventory: {
+        type: Number,
+        default: 0
+    },
     adult_only: {
         type: Boolean,
         default: false

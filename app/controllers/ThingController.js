@@ -11,5 +11,15 @@ module.exports = {
         callback(things);
       }
     });
+  },
+
+  getThing: (thing_id, callback) => {
+    Thing.findOne(thing_id).exec((err, thing) => {
+      if(err) {
+        callback(err);
+      } else {
+        callback(thing);
+      }
+    });
   }
 };
