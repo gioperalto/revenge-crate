@@ -1,20 +1,19 @@
 'use strict'
 
-module.exports = (router) => {
+module.exports = (request, router) => {
 
   router.route('/')
   .get((req, res, next) => {
     res.render('public/home');
   });
 
-  router.route('/themes')
+  router.route('/things')
   .get((req, res, next) => {
-
-  });
-
-  router.route('/services')
-  .get((req, res, next) => {
-    
+    request('/api/things', (error, response, body) => {
+      res.render('public/home', {
+        things: res.json(body)
+      });
+    });
   });
 
 };

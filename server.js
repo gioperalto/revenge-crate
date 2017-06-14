@@ -3,6 +3,7 @@
 let express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
+    request = require('request'),
     configDB = require('./config/database'),
     seed = require('./app/utils/seed'),
     app = express(),
@@ -38,7 +39,7 @@ let routes = {
 };
 for(let key in routes) {
   for(let route of routes[key]) {
-    require('./app/routes/' + key + '/' + route)(router);
+    require('./app/routes/' + key + '/' + route)(request, router);
     console.log('Routing requests from: ' + key + '/' + route);
   }
 }
