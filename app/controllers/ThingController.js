@@ -4,7 +4,20 @@ let Thing = require('../models/Thing');
 
 module.exports = {
   getThings: (callback) => {
-    Thing.find().exec((err, things) => {
+    Thing.find()
+    .exec((err, things) => {
+      if(err) {
+        callback(err);
+      } else {
+        callback(things);
+      }
+    });
+  },
+
+  getAvailableThings: (callback) => {
+    Thing.find()
+    .where('inventory').gt(0)
+    .exec((err, things) => {
       if(err) {
         callback(err);
       } else {
@@ -14,9 +27,10 @@ module.exports = {
   },
 
   getThing: (thing_id, callback) => {
-    Thing.findOne(thing_id).exec((err, thing) => {
+    Thing.findById(thing_id)
+    .exec((err, thing) => {
       if(err) {
-        callback(err);
+        callback(null);
       } else {
         callback(thing);
       }

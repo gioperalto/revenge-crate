@@ -23,10 +23,7 @@ var thingSchema = new Schema({
         type: Number,
         default: 0
     },
-    adult_only: {
-        type: Boolean,
-        default: false
-    },
+    image: String,
     created_at: Date,
     modified_at: Date
 });

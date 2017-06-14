@@ -5,24 +5,27 @@ body.black
   div.section.black
     div.row.container
       each thing in things
-        div.col.s12.m4
-          h5.white-text= thing.name
-
-
-  footer.page-footer.orange
-    div.container
-      div.row
-        div.col.l6.s12
-          h5.white-text About Golden Cat
-          p.grey-text.text-lighten-4.
-            We're a funny group of visionaries that feels everyone else in the industry is a little bit too serious.
-            Eat a snickers, will you!
-        div.col.l6.s12
-          h5.white-text Contact Us
-          p.grey-text.text-lighten-4.pad-right Any questions/ideas about your orders or our products? Reach out to us at 
-            a(href='mailto:revengecrate@gmail.com') revengecrate@gmail.com 
-    div.footer-copyright
-      div.container
-        span.pad-right A
-        a(href='#').orange-text.text-lighten-3.pad-right Golden Cat Corporation
-        span brand
+        div.col.s12.m6.l4
+          div.card
+            div.card-image
+              if thing.inventory.quantity > 0
+                img(src= thing.image)
+                button(data-target='stripe').modal-trigger.btn-floating.halfway-fab.waves-effect.waves-light.red
+                  i.material-icons shopping_cart
+              else
+                img(src='/assets/images/things/out-of-stock.jpg')
+            div.card-content
+              span.card-title= thing.attributes.name
+              span.right $#{thing.price/100}
+              p= thing.attributes.description              
+  
+  include ../partials/modals/purchase.pug
+  include ../partials/footer.pug
+  script(src='/assets/js/scripts/init-select.js')
+  script(src='/assets/js/scripts/init-modal.js')
+  script(src='https://js.stripe.com/v3/')
+  script(src='/assets/js/scripts/stripe-handler.js')
+  script.
+    var key = "#{key}";
+    var stripeHandler = new StripeHandler(key);
+    stripeHandler.setup();

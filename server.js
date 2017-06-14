@@ -4,7 +4,8 @@ let express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     request = require('request'),
-    configDB = require('./config/database'),
+    creds = require('./config/creds'),
+    stripe = require('stripe')(creds.stripe.keys.secret),
     seed = require('./app/utils/seed'),
     app = express(),
     router = express.Router(),
@@ -19,7 +20,7 @@ app.use(bodyParser.json());
 
 // Database configurations
 mongoose.Promise = require('bluebird');
-mongoose.connect(configDB.url);
+mongoose.connect(creds.database.url);
 seed.seedAll();
 
 // Views + Templating
@@ -39,7 +40,7 @@ let routes = {
 };
 for(let key in routes) {
   for(let route of routes[key]) {
-    require('./app/routes/' + key + '/' + route)(request, router);
+    require('./app/routes/' + key + '/' + route)(router, request, stripe);
     console.log('Routing requests from: ' + key + '/' + route);
   }
 }

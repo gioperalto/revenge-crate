@@ -1,0 +1,50 @@
+div#stripe.modal
+  div.modal-content
+    form(action='/purchase' method='post')#payment-form
+      div.row.center
+        h5 The Victim
+        div.group
+          label
+            span Name
+            input(name='shipping.address.name' placeholder='John Doe' required).field
+          label
+            span Address Line 1
+            input(name='shipping.address.line1' placeholder='123 NW Ocean Dr' required).field
+          label
+            span Address Line 2
+            input(name='shipping.address.line2').field
+          label
+            span City
+            input(name='shipping.address.city' placeholder='Miami' required).field
+          label
+            span State
+            select(name='shipping.address.state').field.browser-default
+              option(value='FL' selected) Florida
+          label
+            span ZIP
+            input(name='shipping.address.postal_code' placeholder='33139' required).field
+          label
+            span Country
+            select(name='shipping.address.country').field.browser-default
+              option(value='US' selected) United States
+      div.row.center
+        h5 The Perpetrator
+        div.group
+          label
+            span Murder Weapon
+            input(name='selected_item' value='Rats' disabled).field
+          label
+            span Email
+            input(name='email' placeholder='example@example.com' type='email').field
+          label
+            span Card
+            div#card-element.field
+          label
+            span Message
+            textarea(data-length='80' placeholder='"The Lannisters send their regards." -Joe').field
+          button(type='submit') Submit Payment
+          div.outcome
+            div(role='alert').error
+            div.success Success!
+      div.row.center
+        div.group          

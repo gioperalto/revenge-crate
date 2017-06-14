@@ -2,11 +2,31 @@
 
 let ThingController = require('../../controllers/ThingController');
 
-module.exports = (router) => {
+module.exports = (router, request, stripe) => {
+
+  router.route('/api/products/:product_id')
+  .get((req, res, next) => {
+    stripe.products.retrieve(
+      req.params.product_id,
+      (err, product) => {
+        if(err) {
+          res.json(error);
+        }
+
+        res.json(product.skus.data);
+      }
+    );
+  });
 
   router.route('/api/things')
   .get((req, res, next) => {
-    ThingController.getThings((things) => {
+    if(req.query.expanded) {
+      ThingController.getThings((things) => {
+        res.json(things);
+      });
+    }
+
+    ThingController.getAvailableThings((things) => {
       res.json(things);
     });
   })
@@ -16,7 +36,7 @@ module.exports = (router) => {
 
   router.route('/api/things/:thing')
   .get((req, res, next) => {
-    let thing_id = req.param.thing_id;
+    let thing_id = req.params.thing;
 
     ThingController.getThing(thing_id, (thing) => {
       res.json(thing);
@@ -42,7 +62,7 @@ module.exports = (router) => {
       });
     }
 
-    next(new Error('Incorrect entry of endpoint.'));
+    res.send('Incorrect entry of api endpoint.');
   });
 
   router.route('/api/things/sell/:thing')
@@ -63,7 +83,7 @@ module.exports = (router) => {
       });
     }
 
-    next(new Error('Incorrect entry of endpoint.'));
+    res.send('Incorrect entry of api endpoint.');
   });
 
 };

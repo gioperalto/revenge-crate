@@ -1,6 +1,7 @@
 include ../partials/header.pug
 body.black
   include ../partials/navbar.pug
+  
   div.parallax-container.overlay
     div.section.no-pad-bot
       div.container
@@ -26,22 +27,6 @@ body.black
             know it was you or not.
       div.col.s12.m4
 
-  footer.page-footer.orange
-    div.container
-      div.row
-        div.col.l6.s12
-          h5.white-text About Golden Cat
-          p.grey-text.text-lighten-4.
-            We're a funny group of visionaries that feels everyone else in the industry is a little bit too serious.
-            Eat a snickers, will you!
-        div.col.l6.s12
-          h5.white-text Contact Us
-          p.grey-text.text-lighten-4.pad-right Any questions/ideas about your orders or our products? Reach out to us at 
-            a(href='mailto:revengecrate@gmail.com') revengecrate@gmail.com 
-    div.footer-copyright
-      div.container
-        span.pad-right A
-        a(href='#').orange-text.text-lighten-3.pad-right Golden Cat Corporation
-        span brand
+  include ../partials/footer.pug
 
   script(src='/assets/js/scripts/init-parallax.js')
