@@ -12,6 +12,10 @@ a.btn-large {
   padding-right: 5px;
 }
 
+.pad-top-heavy {
+  padding-top: 100px;
+}
+
 .parallax-container {
   height: 380px;
 }
