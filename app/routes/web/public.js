@@ -25,16 +25,33 @@ module.exports = (router, request, stripe) => {
 
   router.route('/purchase')
   .post((req, res, next) => {
+    let shipping = {
+      "address": {
+        "city": req.body.shipping_city,
+        "country": req.body.shipping_country,
+        "line1": req.body.shipping_line1,
+        "line2": req.body.shipping_line2 === '' ? null : req.body.shipping_line2,
+        "postal_code": req.body.shipping_postal_code,
+        "state": req.body.shipping_state
+      },
+      "name": req.body.shipping_name
+    },
+    order_data = {
+      "order": req.body.selected_item_name
+    };
+
     stripe.orders.create({
       currency: 'usd',
       items: [
         {
           type: 'sku',
+          quantity: 1,
           parent: req.body.selected_item
         }
       ],
-      shipping: req.body.shipping,
-      email: req.body.email
+      shipping: shipping,
+      email: req.body.email,
+      metadata: order_data
     }, (error, order) => {
       if(error) {
         res.send(error);
@@ -51,7 +68,18 @@ module.exports = (router, request, stripe) => {
           source: token,
           statement_descriptor: 'Revenge Crate'
         }, (err, charge) => {
+          if(err) {
+            res.redirect('/revenge', {
+              status: 'There was a problem making a payment with the information provided.',
+              success: false
+            });
+          }
+
           console.log(charge);
+          res.redirect('/revenge', {
+            status: 'A confirmation email has been sent. Thank you for your purchase!',
+            success: true
+          });
           // TODO: Send confirmation email to us
           // TODO: Send confirmation email to customer
         });

@@ -17,6 +17,17 @@ class StripeHandler {
     };
   }
 
+  static stripeTokenHandler(token) {
+    var form = document.getElementById('payment-form');
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+
+    form.submit();
+  }
+
   static setOutcome(result) {
     var successElement = document.querySelector('.success');
     var errorElement = document.querySelector('.error');
@@ -24,12 +35,12 @@ class StripeHandler {
     successElement.classList.remove('visible');
     errorElement.classList.remove('visible');
 
-    if (result.token) {
-      successElement.querySelector('.token').textContent = result.token.id;
-      successElement.classList.add('visible');
-    } else if (result.error) {
+    if (result.error) {
       errorElement.textContent = result.error.message;
       errorElement.classList.add('visible');
+    } else {
+      StripeHandler.stripeTokenHandler(result.token);
+      successElement.classList.add('visible');
     }
   }
 
@@ -45,11 +56,7 @@ class StripeHandler {
     });
     form.addEventListener('submit', function(event) {
       event.preventDefault();
-      var form = document.querySelector('form');
-      var extraDetails = {
-        name: form.querySelector('input[name=cardholder-name]').value,
-      };
-      stripe.createToken(card, extraDetails).then(StripeHandler.setOutcome);
+      stripe.createToken(card).then(StripeHandler.setOutcome);
     });
   }
 }

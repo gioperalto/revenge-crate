@@ -2,7 +2,6 @@
 
 let async = require('async'),
     seeds = require('../../config/seeds'),
-    Thing = require('../models/Thing');
 
 module.exports = {
   seedItems: (items, model, callback) => {
@@ -36,15 +35,7 @@ module.exports = {
   seedAll: () => {
     let start = Date.now();
 
-    async.waterfall([
-      function(callback) {
-        module.exports.seedItems(
-          seeds.things,
-          Thing,
-          callback
-        );
-      }
-    ], function(err) {
+    async.waterfall([], function(err) {
       if(err) {
         console.log(err);
       }

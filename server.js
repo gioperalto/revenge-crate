@@ -2,11 +2,9 @@
 
 let express = require('express'),
     bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
     request = require('request'),
     creds = require('./config/creds'),
     stripe = require('stripe')(creds.stripe.keys.secret),
-    seed = require('./app/utils/seed'),
     app = express(),
     router = express.Router(),
     port = process.env.PORT || 3000;
@@ -19,9 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Database configurations
-mongoose.Promise = require('bluebird');
-mongoose.connect(creds.database.url);
-seed.seedAll();
+// mongoose.Promise = require('bluebird');
+// mongoose.connect(creds.database.url);
 
 // Views + Templating
 app.set('views', './views');
