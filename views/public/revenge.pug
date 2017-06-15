@@ -4,20 +4,20 @@ body.black
 
   div.section.black
     div.row.container
-      each thing in things
+      each product in products
         div.col.s12.m6.l4
           div.card
             div.card-image
-              if thing.inventory.quantity > 0
-                img(src= thing.image)
+              if product.inventory.quantity > 0
+                img(src= product.image)
                 button(data-target='stripe').modal-trigger.btn-floating.halfway-fab.waves-effect.waves-light.red
                   i.material-icons shopping_cart
               else
                 img(src='/assets/images/things/out-of-stock.jpg')
             div.card-content
-              span.card-title= thing.attributes.name
-              span.right $#{thing.price/100}
-              p= thing.attributes.description              
+              span.card-title= product.attributes.name
+              span.right $#{product.price/100}
+              p= product.attributes.description              
   
   include ../partials/modals/purchase.pug
   include ../partials/footer.pug

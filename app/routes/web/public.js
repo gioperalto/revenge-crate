@@ -16,8 +16,8 @@ module.exports = (router, request, stripe) => {
     let things_endpoint = protocol+req.get('host')+'/api/products/'+product_id;
 
     request(things_endpoint, (error, response, body) => {
-      res.render('public/things', {
-        things: JSON.parse(body),
+      res.render('public/revenge', {
+        products: JSON.parse(body),
         key: pub_key
       });
     });
