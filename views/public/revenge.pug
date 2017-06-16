@@ -15,9 +15,9 @@ body.black
               else
                 img(src='/assets/images/things/out-of-stock.jpg')
             div.card-content
-              span.selected_item.hide= product.id
-              span.card-title= product.attributes.name
-              span.price.right $#{product.price/100}
+              span.selected_item_id.hide= product.id
+              span.selected_item_name.card-title= product.attributes.name
+              span.selected_item_price.right $#{product.price/100}
               p= product.attributes.description              
   
   include ../partials/modals/purchase.pug

@@ -5,6 +5,9 @@ div#stripe.modal
         h5 The Victim
         div.group
           label
+            span Death By
+            input(name='selected_item_name' value='Rats' readonly='readonly')#selected_item_name.field
+          label
             span Name
             input(name='shipping_name' placeholder='John Doe' required).field
           label
@@ -31,9 +34,6 @@ div#stripe.modal
         h5 The Perpetrator
         div.group
           label
-            span Murder Weapon
-            input(name='selected_item' value='Rats' disabled).field
-          label
             span Email
             input(name='email' placeholder='example@example.com' type='email').field
           label
@@ -41,10 +41,12 @@ div#stripe.modal
             div#card-element.field
           label
             span Message
-            textarea(data-length='80' placeholder='"The Lannisters send their regards." -Joe').field
-          button(type='submit') Submit Payment
+            textarea(name='message' data-length='80' placeholder='"The Lannisters send their regards." -Joe').field
+          button(type='submit') Pay
+            span#selected_item_price.pad-left $10
           div.outcome
             div(role='alert').error
             div.success Success!
       div.row.center
-        div.group          
+        div.group
+      input(type='hidden' name='selected_item_id' value='')#selected_item_id

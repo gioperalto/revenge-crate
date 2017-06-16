@@ -13,9 +13,9 @@ module.exports = (router, request, stripe) => {
 
   router.route('/revenge')
   .get((req, res, next) => {
-    let things_endpoint = protocol+req.get('host')+'/api/products/'+product_id;
+    let products_endpoint = protocol+req.get('host')+'/api/products/'+product_id;
 
-    request(things_endpoint, (error, response, body) => {
+    request(products_endpoint, (error, response, body) => {
       res.render('public/revenge', {
         products: JSON.parse(body),
         key: pub_key
@@ -37,7 +37,8 @@ module.exports = (router, request, stripe) => {
       "name": req.body.shipping_name
     },
     order_data = {
-      "order": req.body.selected_item_name
+      order: req.body.selected_item_name,
+      message: req.body.message
     };
 
     stripe.orders.create({
@@ -46,7 +47,7 @@ module.exports = (router, request, stripe) => {
         {
           type: 'sku',
           quantity: 1,
-          parent: req.body.selected_item
+          parent: req.body.selected_item_id
         }
       ],
       shipping: shipping,
@@ -69,19 +70,18 @@ module.exports = (router, request, stripe) => {
           statement_descriptor: 'Revenge Crate'
         }, (err, charge) => {
           if(err) {
-            res.redirect('/revenge', {
-              status: 'There was a problem making a payment with the information provided.',
-              success: false
-            });
+            res.redirect('/revenge?success=false');
           }
 
-          console.log(charge);
-          res.redirect('/revenge', {
-            status: 'A confirmation email has been sent. Thank you for your purchase!',
-            success: true
-          });
-          // TODO: Send confirmation email to us
-          // TODO: Send confirmation email to customer
+          stripe.skus.retrieve(
+            req.body.selected_item_id,
+            (e, sku) => {
+              stripe.skus.update(sku.id, {
+                inventory: { quantity: sku.inventory.quantity - 1 }
+              });
+              res.redirect('/revenge?success=true');
+            }
+          );
         });
       }
     });
