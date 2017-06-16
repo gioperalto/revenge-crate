@@ -76,8 +76,11 @@ class StripeHandler {
       });
     }
     form.addEventListener('submit', function(event) {
+      var button = event.target.getElementsByTagName('button')[0];
+      
       event.preventDefault();
-      event.target.disabled = true;
+      button.className += 'submit-payment';
+      button.disabled = true;
       stripe.createToken(card).then(StripeHandler.setOutcome);
     });
   }

@@ -148,3 +148,7 @@
 #stripe .pad-left {
   padding-left: 5px;
 }
+
+#stripe .submit-payment {
+  background-color: #2ecc71;
+}
