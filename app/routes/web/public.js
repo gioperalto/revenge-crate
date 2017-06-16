@@ -2,7 +2,9 @@
 
 let protocol = 'http://',
     pub_key = require('../../../config/creds').stripe.keys.public,
-    product_id = require('../../../config/creds').stripe.product.id;
+    product_id = require('../../../config/creds').stripe.product.id,
+    states = require('../../../config/states').states,
+    mail = require('../../utils/gmail');
 
 module.exports = (router, request, stripe) => {
 
@@ -18,7 +20,8 @@ module.exports = (router, request, stripe) => {
     request(products_endpoint, (error, response, body) => {
       res.render('public/revenge', {
         products: JSON.parse(body),
-        key: pub_key
+        key: pub_key,
+        states: states
       });
     });
   });
@@ -55,7 +58,8 @@ module.exports = (router, request, stripe) => {
       metadata: order_data
     }, (error, order) => {
       if(error) {
-        res.send(error);
+        let status = 'There was an error the info provided. Please double check everything and try again.';
+        res.redirect('/revenge?status='+status);
       } else {
         let token = req.body.stripeToken;
 
@@ -79,6 +83,7 @@ module.exports = (router, request, stripe) => {
               stripe.skus.update(sku.id, {
                 inventory: { quantity: sku.inventory.quantity - 1 }
               });
+              mail.sendEmail(req.body.email, order);
               res.redirect('/revenge?success=true');
             }
           );

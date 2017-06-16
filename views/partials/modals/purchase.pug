@@ -22,7 +22,8 @@ div#stripe.modal
           label
             span State
             select(name='shipping_state').field.browser-default
-              option(value='FL' selected) Florida
+              for state in states
+                option(value= state.abbreviation)= state.name
           label
             span ZIP
             input(name='shipping_postal_code' placeholder='33139' required).field
@@ -42,8 +43,9 @@ div#stripe.modal
           label
             span Message
             textarea(name='message' data-length='80' placeholder='"The Lannisters send their regards." -Joe').field
-          button(type='submit') Pay
-            span#selected_item_price.pad-left $10
+          div.payment-button
+            button(type='submit') Pay
+              span#selected_item_price.pad-left $10
           div.outcome
             div(role='alert').error
             div.success Success!
