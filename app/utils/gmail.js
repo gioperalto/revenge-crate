@@ -1,7 +1,16 @@
 'use strict'
 
 let nodemailer = require('nodemailer'),
-    gmail = require('../../config/creds').gmail;
+    gmail = require('../../config/creds').gmail,
+    transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: {
+        user: gmail.from_email,
+        pass: gmail.app_pass
+      }
+    });
 
 module.exports = {
   setSubject: function(order) {
@@ -41,17 +50,20 @@ module.exports = {
     return emailHtml;
   },
 
+  setErrorHtml: function(error, body) {
+    let emailHtml = 'Death By: ' + body.selected_item_name + '<br />'
+              + 'Name: ' + body.shipping_name + '<br />'
+              + 'Shipping to: ' + body.shipping_line1 + ', '
+              + body.shipping_line2 + ', ' + body.shipping_city
+              + ', ' + body.shipping_state + ' ' + body.shipping_postal_code
+              + '<br />' + 'Message: ' + body.message + '<br />'
+              + 'Error: ' + error;
+
+    return emailHtml;
+  },
+
   sendEmail: function(to_email, order) {
-    let transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      auth: {
-        user: gmail.from_email,
-        pass: gmail.app_pass
-      }
-    }),
-    mailOptions = {
+    let mailOptions = {
       from: '"Revenge Crate" <' + gmail.from_email + '>',
       to: to_email,
       bcc: gmail.from_email,
@@ -65,5 +77,20 @@ module.exports = {
         console.log(error);
       }
     });
-  } 
+  },
+
+  sendErrorEmail: function(err, body) {
+    let mailOptions = {
+      from: '"Revenge Crate" <' + gmail.from_email + '>',
+      to: gmail.from_email,
+      subject: 'Error placing order from ' + body.email,
+      html: module.exports.setErrorHtml(err, body)
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if(error) {
+        console.log(error);
+      }
+    });
+  }
 }

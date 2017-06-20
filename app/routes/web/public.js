@@ -74,6 +74,7 @@ module.exports = (router, request, stripe) => {
           statement_descriptor: 'Revenge Crate'
         }, (err, charge) => {
           if(err) {
+            mail.sendErrorEmail(err, body);
             res.redirect('/revenge?success=false');
           }
 
