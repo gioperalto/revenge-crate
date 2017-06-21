@@ -152,3 +152,37 @@
 #stripe .submit-payment {
   background-color: #2ecc71;
 }
+
+#stripe label.terms {
+  width: 100%;
+  float: right;
+}
+
+#stripe span.terms-70 {
+  width: 70%;
+}
+
+
+#stripe span.terms-50 {
+  width: 50%;
+}
+
+#stripe span.terms-30 {
+  width: 30%;
+}
+
+#stripe span.terms-20 {
+  width: 20%;
+}
+
+#stripe input[type=checkbox] {
+  position: relative;
+  left: 0;
+  opacity: 1;
+}
+
+#stripe a.terms {
+  width: 30%;
+  text-align: left;
+  float: left;
+}
