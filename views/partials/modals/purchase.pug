@@ -11,10 +11,10 @@ div#stripe.modal
             span Name
             input(name='shipping_name' placeholder='John Doe' required).field
           label
-            span Address Line 1
+            span Address
             input(name='shipping_line1' placeholder='123 NW Ocean Dr' required).field
           label
-            span Address Line 2
+            span Line 2
             input(name='shipping_line2').field
           label
             span City
@@ -46,7 +46,7 @@ div#stripe.modal
           label
             span.terms-20
               input(type='checkbox' required)
-            span.terms-70 By checking this, you agree to our
+            span.terms-70 I agree to the
               a(href='/terms' target='_blank').pad-left Terms of Service
           div.payment-button
             button(type='submit') Pay

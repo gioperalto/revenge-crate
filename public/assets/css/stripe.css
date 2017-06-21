@@ -19,7 +19,6 @@
 }
 
 #stripe form {
-  width: 80%;
   margin: 20px auto;
 }
 
@@ -160,6 +159,8 @@
 
 #stripe span.terms-70 {
   width: 70%;
+  float: right;
+  text-align: left;
 }
 
 
@@ -181,8 +182,31 @@
   opacity: 1;
 }
 
-#stripe a.terms {
-  width: 30%;
-  text-align: left;
-  float: left;
+/* Small devices (landscape phones, 600 and down) */
+@media (max-width: 600px) { 
+  #stripe form {
+    width: 100%;
+  }
+
+  #stripe.modal {
+    width: 100%;  
+  }
+}
+
+/* Medium devices (tablets, 601 and up) */
+@media (min-width: 601px) and (max-width: 992px) {
+  #stripe form {
+    width: 90%;
+  }
+
+  #stripe.modal {
+    width: 90%;  
+  }
+}
+
+/* Large devices (desktops, 993px and up) */
+@media (min-width: 993px) {
+  #stripe form {
+    width: 80%;
+  }
 }
