@@ -81,7 +81,7 @@ module.exports = {
 
   sendErrorEmail: function(err, body) {
     let mailOptions = {
-      from: '"Revenge Crate" <' + gmail.from_email + '>',
+      from: '"Revenge Crate" <info@revengecrate.com>',
       to: gmail.from_email,
       subject: 'Error placing order from ' + body.email,
       html: module.exports.setErrorHtml(err, body)
