@@ -8,6 +8,10 @@ a.btn-large {
   margin-right: 10px;
 }
 
+.pad-left {
+  padding-left: 5px;
+}
+
 .pad-right {
   padding-right: 5px;
 }
@@ -28,4 +32,16 @@ a.btn-large {
   position: absolute;
   right: 24px;
   bottom: -20px;
+}
+
+.serious {
+  text-transform: uppercase;
+}
+
+.uline {
+  text-decoration: underline;
+}
+
+.strong {
+  font-weight: bold;
 }

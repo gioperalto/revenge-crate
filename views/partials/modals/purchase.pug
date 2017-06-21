@@ -48,9 +48,14 @@ div#stripe.modal
               input(type='checkbox' required)
             span.terms-70 I agree to the
               a(href='/terms' target='_blank').pad-left Terms of Service
+          label
+            span.terms-20
+              input(type='checkbox' required)
+            span.terms-70 I agree to the
+              a(href='/privacy' target='_blank').pad-left Privacy Policy
           div.payment-button
             button(type='submit') Pay
-              span#selected_item_price $10
+              span#selected_item_price.pad-left $10
           div.outcome
             div(role='alert').error
             div.success Success!

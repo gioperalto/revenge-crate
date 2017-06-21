@@ -13,17 +13,27 @@ module.exports = (router, request, stripe) => {
     res.render('public/home');
   });
 
-  router.route('/revenge')
+  router.route('/order')
   .get((req, res, next) => {
     let products_endpoint = protocol+req.get('host')+'/api/products/'+product_id;
 
     request(products_endpoint, (error, response, body) => {
-      res.render('public/revenge', {
+      res.render('public/order', {
         products: JSON.parse(body),
         key: pub_key,
         states: states
       });
     });
+  });
+
+  router.route('/terms')
+  .get((req, res, next) => {
+    res.render('public/terms');
+  });
+
+  router.route('/privacy')
+  .get((req, res, next) => {
+    res.render('public/privacy');
   });
 
   router.route('/purchase')
