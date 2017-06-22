@@ -4,6 +4,20 @@ nav a.logo {
   text-transform: uppercase;
 }
 
+ul.site-map {
+  list-style-type: disc;
+  padding: 0 0 0 40px;
+}
+
+ul.site-map li {
+  list-style-type: disc;
+  color: #fff;
+}
+
+ul.site-map li a {
+  color: #EF9A9A;
+}
+
 .side-nav a {
   color: #fff;
 }
