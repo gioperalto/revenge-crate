@@ -8,6 +8,8 @@ let protocol = 'http://',
 
 module.exports = (router, request, stripe) => {
 
+  /* GET Requests */
+
   router.route('/')
   .get((req, res, next) => {
     res.render('public/home');
@@ -35,6 +37,18 @@ module.exports = (router, request, stripe) => {
   .get((req, res, next) => {
     res.render('public/privacy');
   });
+
+  router.route('/about')
+  .get((req, res, next) => {
+    res.render('public/about');
+  });
+
+  router.route('/faq')
+  .get((req, res, next) => {
+    res.render('public/faq')
+  });
+
+  /* POST Requests */
 
   router.route('/purchase')
   .post((req, res, next) => {
