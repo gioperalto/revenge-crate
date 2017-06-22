@@ -1,6 +1,6 @@
 div#stripe.modal
   div.modal-content
-    form(action='/purchase' method='post')#payment-form
+    form(name='payment_form' action='/purchase' method='post')#payment-form
       div.row.center
         h5 The Victim
         div.group
@@ -9,16 +9,16 @@ div#stripe.modal
             input(name='selected_item_name' value='Rats' readonly='readonly')#selected_item_name.field
           label
             span Name
-            input(name='shipping_name' placeholder='John Doe' required).field
+            input(name='shipping_name' placeholder='John Doe').field
           label
             span Address
-            input(name='shipping_line1' placeholder='123 NW Ocean Dr' required).field
+            input(name='shipping_line1' placeholder='123 NW Ocean Dr').field
           label
             span Line 2
             input(name='shipping_line2').field
           label
             span City
-            input(name='shipping_city' placeholder='Miami' required).field
+            input(name='shipping_city' placeholder='Miami').field
           label
             span State
             select(name='shipping_state').field.browser-default
@@ -26,7 +26,7 @@ div#stripe.modal
                 option(value= state.abbreviation)= state.name
           label
             span ZIP
-            input(name='shipping_postal_code' placeholder='33139' required).field
+            input(name='shipping_postal_code' placeholder='33139').field
           label
             span Country
             select(name='shipping_country').field.browser-default
@@ -45,12 +45,12 @@ div#stripe.modal
             textarea(name='message' data-length='80' placeholder='"The Lannisters send their regards." -Joe').field
           label
             span.terms-20
-              input(type='checkbox' required)
+              input(name='terms_checkbox' type='checkbox')
             span.terms-70 I agree to the
               a(href='/terms' target='_blank').pad-left Terms of Service
           label
             span.terms-20
-              input(type='checkbox' required)
+              input(name='privacy_checkbox' type='checkbox')
             span.terms-70 I agree to the
               a(href='/privacy' target='_blank').pad-left Privacy Policy
           div.payment-button
@@ -59,6 +59,4 @@ div#stripe.modal
           div.outcome
             div(role='alert').error
             div.success Success!
-      div.row.center
-        div.group
       input(type='hidden' name='selected_item_id' value='')#selected_item_id

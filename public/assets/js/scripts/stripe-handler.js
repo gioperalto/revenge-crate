@@ -59,6 +59,52 @@ class StripeHandler {
     }
   }
 
+  static fieldsAreValid() {
+    var errorElement = document.querySelector('.error');
+    var formShippingName = document.forms["payment_form"]["shipping_name"].value;
+    var formShippingLine1 = document.forms["payment_form"]["shipping_line1"].value;
+    var formShippingCity = document.forms["payment_form"]["shipping_city"].value;
+    var formShippingPostalCode = document.forms["payment_form"]["shipping_postal_code"].value;
+    var formEmail = document.forms["payment_form"]["email"].value;
+    var formTermsCheckbox = document.forms["payment_form"]["terms_checkbox"].value;
+    var formPrivacyCheckbox = document.forms["payment_form"]["privacy_checkbox"].value;
+    var fieldsAreValid = true;
+
+    errorElement.classList.remove('visible');
+
+    if(formShippingName == null || formShippingName == "") {
+      errorElement.textContent = 'Victim name not specified.';
+      errorElement.classList.add('visible');
+      fieldsAreValid = false;
+    } else if(formShippingLine1 == null || formShippingLine1 == "") {
+      errorElement.textContent = 'Address not specified.';
+      errorElement.classList.add('visible');
+      fieldsAreValid = false;
+    } else if(formShippingCity == null || formShippingCity == "") {
+      errorElement.textContent = 'City not specified.';
+      errorElement.classList.add('visible');
+      fieldsAreValid = false;
+    } else if(formShippingPostalCode == null || formShippingPostalCode == "") {
+      errorElement.textContent = 'ZIP not specified.';
+      errorElement.classList.add('visible');
+      fieldsAreValid = false;
+    } else if(formEmail == null || formEmail == "") {
+      errorElement.textContent = 'Email not specified.';
+      errorElement.classList.add('visible');
+      fieldsAreValid = false;
+    } else if(formTermsCheckbox == null || formTermsCheckbox == "") {
+      errorElement.textContent = 'Terms of Service unchecked.';
+      errorElement.classList.add('visible');
+      fieldsAreValid = false;
+    } else if(formPrivacyCheckbox == nul || formPrivacyCheckbox == "") {
+      errorElement.textContent = 'Privacy Policy unchecked.';
+      errorElement.classList.add('visible');
+      fieldsAreValid = false;
+    }
+
+    return fieldsAreValid;
+  }
+
   setup() {
     var stripe = this.stripe;
     var elements = this.stripe.elements();
@@ -79,9 +125,12 @@ class StripeHandler {
       var button = event.target.getElementsByTagName('button')[0];
       
       event.preventDefault();
-      button.className += 'submit-payment';
-      button.disabled = true;
-      stripe.createToken(card).then(StripeHandler.setOutcome);
+
+      if(StripeHandler.fieldsAreValid()) {
+        button.className += 'submit-payment';
+        button.disabled = true;
+        stripe.createToken(card).then(StripeHandler.setOutcome);
+      }
     });
   }
 }
