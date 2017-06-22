@@ -16,6 +16,10 @@ a.btn-large {
   margin-right: 10px;
 }
 
+.section {
+  padding-bottom: 0px;
+}
+
 .pad-left {
   padding-left: 5px;
 }
