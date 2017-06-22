@@ -71,3 +71,9 @@ a.btn-large {
 .strong {
   font-weight: bold;
 }
+
+.responsive-image-med {
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+}

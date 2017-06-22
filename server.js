@@ -32,7 +32,8 @@ let routes = {
     'things'
   ],
   web: [
-    'public'
+    'public',
+    '404'
   ]
 };
 for(let key in routes) {
