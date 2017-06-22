@@ -12,7 +12,10 @@ module.exports = (router, request, stripe) => {
 
   router.route('/')
   .get((req, res, next) => {
-    res.render('public/home');
+    res.render('public/home', {
+      title: 'Revenge Crate',
+      description: 'Revenge Crate provides a selection of scary creatures to send to someone for a low price.'
+    });
   });
 
   router.route('/order')
@@ -21,6 +24,8 @@ module.exports = (router, request, stripe) => {
 
     request(products_endpoint, (error, response, body) => {
       res.render('public/order', {
+        title: 'Order',
+        description: 'We can send ants, cockroaches, rats, scorpions, snakes, spiders, and other creepy creatures.',
         products: JSON.parse(body),
         key: pub_key,
         states: states
@@ -30,22 +35,34 @@ module.exports = (router, request, stripe) => {
 
   router.route('/terms')
   .get((req, res, next) => {
-    res.render('public/terms');
+    res.render('public/terms', {
+      title: 'Terms of Service',
+      description: ''
+    });
   });
 
   router.route('/privacy')
   .get((req, res, next) => {
-    res.render('public/privacy');
+    res.render('public/privacy', {
+      title: 'Privacy Policy',
+      description: ''
+    });
   });
 
   router.route('/about')
   .get((req, res, next) => {
-    res.render('public/about');
+    res.render('public/about', {
+      title: 'About',
+      description: 'What is Revenge Crate? What do we send? What occasions can this be for?'
+    });
   });
 
   router.route('/faq')
   .get((req, res, next) => {
-    res.render('public/faq')
+    res.render('public/faq', {
+      title: 'FAQ',
+      description: 'How long will my order take? Do you ship outside the U.S.?'
+    });
   });
 
   /* POST Requests */
