@@ -14,7 +14,8 @@ module.exports = (router, request, stripe) => {
   .get((req, res, next) => {
     res.render('public/home', {
       title: 'Revenge Crate',
-      description: 'Revenge Crate provides a selection of scary creatures to send to someone for a low price.'
+      description: 'Revenge Crate provides a selection of scary creatures to send to someone for a low price.',
+      keywords: 'revenge crate, revenge, crate, home, scare'
     });
   });
 
@@ -26,6 +27,7 @@ module.exports = (router, request, stripe) => {
       res.render('public/order', {
         title: 'Order',
         description: 'We can send ants, cockroaches, rats, scorpions, snakes, spiders, and other creepy creatures.',
+        keywords: 'products, order, ants, cockroaches, rats, scorpions, snakes, spiders',
         products: JSON.parse(body),
         key: pub_key,
         states: states
@@ -33,27 +35,12 @@ module.exports = (router, request, stripe) => {
     });
   });
 
-  router.route('/terms')
-  .get((req, res, next) => {
-    res.render('public/terms', {
-      title: 'Terms of Service',
-      description: ''
-    });
-  });
-
-  router.route('/privacy')
-  .get((req, res, next) => {
-    res.render('public/privacy', {
-      title: 'Privacy Policy',
-      description: ''
-    });
-  });
-
   router.route('/about')
   .get((req, res, next) => {
     res.render('public/about', {
       title: 'About',
-      description: 'What is Revenge Crate? What do we send? What occasions can this be for?'
+      description: 'What is Revenge Crate? What do we send? What occasions can this be for?',
+      keywords: 'revenge crate, about, gift, prank, trending, funny'
     });
   });
 
@@ -61,7 +48,26 @@ module.exports = (router, request, stripe) => {
   .get((req, res, next) => {
     res.render('public/faq', {
       title: 'FAQ',
-      description: 'How long will my order take? Do you ship outside the U.S.?'
+      description: 'How long will my order take? Do you ship outside the U.S.?',
+      keywords: 'faq, shipping, fee, expect, price'
+    });
+  });
+
+  router.route('/terms')
+  .get((req, res, next) => {
+    res.render('public/terms', {
+      title: 'Terms of Service',
+      description: '',
+      keywords: ''
+    });
+  });
+
+  router.route('/privacy')
+  .get((req, res, next) => {
+    res.render('public/privacy', {
+      title: 'Privacy Policy',
+      description: '',
+      keywords: ''
     });
   });
 

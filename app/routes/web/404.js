@@ -5,7 +5,8 @@ module.exports = (router) => {
   .get((req, res, next) => {
     res.render('404', {
       title: 'Page Not Found',
-      description: ''
+      description: '',
+      keywords: ''
     });
   });
 };
