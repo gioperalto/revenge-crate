@@ -4,6 +4,14 @@ nav a.logo {
   text-transform: uppercase;
 }
 
+.side-nav a {
+  color: #fff;
+}
+
+.side-nav.inverse {
+  background: #000;
+}
+
 a.btn-large {
   margin-right: 10px;
 }

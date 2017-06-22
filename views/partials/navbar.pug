@@ -1,8 +1,17 @@
-nav.black
+nav.nav-extended.black
   div.nav-wrapper
     a.brand-logo.center(href='/')
       img(src='/assets/images/logos/logo.png' height='64px')
-    ul#nav-mobile.right.hide-hide-on-med-and-down.valign-wrapper
+    a(href='#' data-activates='mobile-nav' class='button-collapse')
+      i.material-icons menu
+    ul#nav-mobile.right.hide-on-med-and-down
+      li
+        a(href='/order') Order
+      li
+        a(href='/about') About
+      li
+        a(href='/faq') FAQ
+    ul#mobile-nav.side-nav.inverse
       li
         a(href='/order') Order
       li
