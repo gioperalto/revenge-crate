@@ -10,7 +10,7 @@ body.black
           div.card
             div.card-image
               if product.inventory.quantity > 0
-                img(src='/assets/images/things/'+product.attributes.name+'.jpg')
+                img(src='/assets/images/things/'+product.attributes.name.toLowerCase()+'.jpg')
                 button(data-target='stripe').modal-trigger.btn-floating.halfway-fab.waves-effect.waves-light.red
                   i.material-icons shopping_cart
               else
