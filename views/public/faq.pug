@@ -8,43 +8,15 @@ body.black
       h3.white-text.center Frequently Asked Questions (FAQ)
       div.row
         div.col.s12
-          div.card
-            div.card-content
-              span.card-title 
-                span.strong.pad-right Q.
-                | How long will my order take to arrive?
-              p
-                span.strong.pad-right A.
-                | Currently our estimate is within 7 business days. That number should shrink soon.
-        div.col.s12
-          div.card
-            div.card-content
-              span.card-title 
-                span.strong.pad-right Q.
-                | Do you ship outside the U.S.?
-              p
-                span.strong.pad-right A.
-                | Not as of yet. We only ship with USPS (United States Postal Service) right now, but
-                | that may change soon.
-        div.col.s12
-          div.card
-            div.card-content
-              span.card-title 
-                span.strong.pad-right Q.
-                | Is there a shipping fee in addition to the price I see on products?
-              p
-                span.strong.pad-right A.
-                | No. Products are one simple price to make the purchase process easier for you.
-        div.col.s12
-          div.card
-            div.card-content
-              span.card-title 
-                span.strong.pad-right Q.
-                | What can I expect my "victim" to receive in their revenge crate?
-              p
-                span.strong.pad-right A.
-                | They will receive a box from us containing the creature(s) you selected. It can either be sent
-                | anonymously or by you, with an optional message.
+          each question in questions
+            div.card
+              div.card-content
+                span.card-title 
+                  span.strong.pad-right Q.
+                  | #{question.question}
+                p
+                  span.strong.pad-right A.
+                  | #{question.answer}
 
   include ../partials/footer.pug
 

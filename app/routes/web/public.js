@@ -4,6 +4,7 @@ let protocol = 'http://',
     pub_key = require('../../../config/creds').stripe.keys.public,
     product_id = require('../../../config/creds').stripe.product.id,
     states = require('../../../config/states').states,
+    questions = require('../../../config/faq').questions,
     mail = require('../../utils/gmail');
 
 module.exports = (router, request, stripe) => {
@@ -49,7 +50,8 @@ module.exports = (router, request, stripe) => {
     res.render('public/faq', {
       title: 'FAQ',
       description: 'How long will my order take? Do you ship outside the U.S.?',
-      keywords: 'faq, shipping, fee, expect, price'
+      keywords: 'faq, shipping, fee, expect, price',
+      questions: questions
     });
   });
 
