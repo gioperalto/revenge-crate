@@ -1,12 +1,21 @@
 include ../partials/creature-header.pug
 body.black
+  script(src='/assets/js/scripts/fb-sdk.js')
   include ../partials/navbar.pug
 
   div.section.black
     div.row.container.center
       img(src= image).responsive-image-med
-      p.white-text #{creature} creep you out the most! 
-      p.white-text.
-        Share this on Facebook!
+      p.white-text #{creature} creep you out the most!
+      div#shareBtn.btn.blue.darken-4 Share on Facebook
 
   include ../partials/footer.pug
+  script.
+    document.getElementById('shareBtn').onclick = function() {
+      FB.ui({
+        method: 'share',
+        display: 'popup',
+        href: "#{url}",
+        quote: 'You have to try this! type https://www.revengecrate.com/creature/<your-name> as a comment and see what you get'
+      }, function(response){});
+    }
