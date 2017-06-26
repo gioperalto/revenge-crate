@@ -29,7 +29,7 @@ app.set('view engine', 'pug');
 // ---------------------------------------------------------
 let routes = {
   api: [
-    'things'
+    'creatures'
   ],
   web: [
     'public',

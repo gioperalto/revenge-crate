@@ -22,7 +22,7 @@ module.exports = (router, request, stripe) => {
 
   router.route('/order')
   .get((req, res, next) => {
-    let products_endpoint = protocol+req.get('host')+'/api/products/'+product_id;
+    let products_endpoint = protocol+req.get('host')+'/api/creatures/'+product_id;
 
     request(products_endpoint, (error, response, body) => {
       res.render('public/order', {
