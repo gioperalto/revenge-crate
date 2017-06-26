@@ -36,6 +36,24 @@ module.exports = (router, request, stripe) => {
     });
   });
 
+  router.route('/creature/:name')
+  .get((req, res, next) => {
+    let creature_endpoint = protocol+req.get('host')+'/api/creatures/random/'+product_id,
+        name = req.params.name;
+
+    request(creature_endpoint, (error, response, body) => {
+      let creature = JSON.parse(body);
+
+      res.render('public/creature', {
+        description: 'What creature creeps you out the most?',
+        keywords: 'revenge crate, creature, creeps',
+        creature: creature.attributes.name,
+        image: creature.image,
+        url: protocol+req.get('host')+'/creature/'+name
+      });
+    });
+  });
+
   router.route('/about')
   .get((req, res, next) => {
     res.render('public/about', {
