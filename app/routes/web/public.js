@@ -45,6 +45,7 @@ module.exports = (router, request, stripe) => {
       let creature = JSON.parse(body);
 
       res.render('public/creature', {
+        title: 'Creature Scare',
         description: 'What creature creeps you out the most?',
         creature: creature.attributes.name,
         image: creature.image,
