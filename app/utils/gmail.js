@@ -38,8 +38,8 @@ module.exports = {
         emailHtml = '<h1>Order Confirmation</h1>'
               + '<p>Thank you for placing an order at Revenge Crate.</p>'
               + '<p><h3><b>Order details:<b></h3><br />'
-              + '<b>Your Victim</b><br />'
-              + 'Death By: ' + order.metadata.order + '<br />'
+              + '<b>Their Info</b><br />'
+              + 'Crate: ' + order.metadata.order + '<br />'
               + 'Name: ' + order.shipping.name + '<br />'
               + 'Shipping to: ' + order.shipping.address.line1+ line2 + ', ' 
               + order.shipping.address.city + ', ' + order.shipping.address.state 
@@ -51,7 +51,7 @@ module.exports = {
   },
 
   setErrorHtml: function(error, body) {
-    let emailHtml = 'Death By: ' + body.selected_item_name + '<br />'
+    let emailHtml = 'Crate: ' + body.selected_item_name + '<br />'
               + 'Name: ' + body.shipping_name + '<br />'
               + 'Shipping to: ' + body.shipping_line1 + ', '
               + body.shipping_line2 + ', ' + body.shipping_city

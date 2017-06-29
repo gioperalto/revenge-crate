@@ -2,10 +2,10 @@ div#stripe.modal
   div.modal-content
     form(name='payment_form' action='/purchase' method='post')#payment-form
       div.row.center
-        h5 The Victim
+        h5 Their Info
         div.group
           label
-            span Death By
+            span Crate
             input(name='selected_item_name' value='Rats' readonly='readonly')#selected_item_name.field
           label
             span Name
@@ -32,7 +32,7 @@ div#stripe.modal
             select(name='shipping_country').field.browser-default
               option(value='US' selected) United States
       div.row.center
-        h5 The Perpetrator
+        h5 Your Info
         div.group
           label
             span Email
